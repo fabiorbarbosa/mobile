@@ -1,0 +1,77 @@
+/* Empty. Add your own CSS if you like */
+* { height: 100% }
+.container {
+    margin: 0 auto !important;
+}
+.divLinha {
+    float:left !important;
+    position: relative !important;
+    border: 1px solid #000 !important; 
+    background-image: url('../img/background.png') !important;
+    color: #fff !important;
+    display:block !important;
+    font-size: 22px !important;
+    font-weight: bold !important;
+    width: 100% !important;
+    height: 100% !important;
+    text-align: center !important;
+    margin: 1px !important;
+}
+.row {
+    height: 18% !important;
+}
+.row1 {
+    height: 13% !important;
+}
+.row1 .col{
+    padding: 2px 2px 2px 0px;
+}
+.row, .col {
+    padding: 2px 2px 2px 0px;
+}
+.divLinha:active, .fake-divLinha {
+    background-color: #F5DEB3 !important;
+}
+.divLinha span{
+    display: inline-block !important;
+    vertical-align: middle !important;
+    padding: 33% 33% 33% 33%;
+}
+.divVisor {
+    text-align: right !important;
+    font-size: 42px !important;
+    width: 99.5% !important;
+    height: 100% !important;
+    border: 1px solid #000 !important;
+    background-color: #F5DEB3 !important;
+    vertical-align: middle !important;
+    margin-top: 0px !important;
+    margin-left: 2px !important; 
+    padding-top: 5% !important;
+}
+.bar-header{
+    margin-left: 0px !important;
+    text-align: center !important;
+    margin-top: 3px!important;
+    margin-bottom: 2px!important;
+    width: 100%!important;
+    border:0 !important;
+    padding-top: 2px!important;
+    background-color: #cdcdc1 !important;    
+}
+.title {
+    text-align: center !important;
+    margin-top: 1px!important;
+    margin-bottom: 2px!important;
+    margin-left: 0px!important;
+    padding-top: 2px!important; 
+    font-weight: bold !important;
+    font-size: 26px !important;
+    color: #000 !important;
+}
+.pane{
+    background-color: #fff !important;    
+}
+.bar {
+    background-image: url('../img/background.png') !important;
+}
