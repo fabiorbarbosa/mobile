@@ -1,0 +1,21 @@
+      <ion-view view-title="Logradouro">
+        <ion-header-bar class="bar-light bar-subheader">
+          <input ng-model="formData.inputCep" class="inputCep" type="text" placeholder="00000-000" mask="99999-999">
+          <a nav-transition="android" ng-click="ConsultarLogradouro()">
+            <button id="btnLogradouro" class="button button-icon ion-android-search input-button"></button>
+          </a>
+        </ion-header-bar>
+        <ion-content overflow-scroll="false">
+          <ion-refresher on-refresh="ConsultarLogradouro()"></ion-refresher>
+          <ion-list>
+            <ion-item>
+              {{dadosLogradouro.cep}}<br/>
+              {{dadosLogradouro.bairro}}<br/>
+              {{dadosLogradouro.complemento}}<br/>
+              {{dadosLogradouro.localidade}}<br/>
+              {{dadosLogradouro.logradouro}}<br/>
+              {{dadosLogradouro.uf}}
+            </ion-item>
+          </ion-list>
+        </ion-content>
+      </ion-view>

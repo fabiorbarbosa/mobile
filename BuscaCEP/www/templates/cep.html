@@ -1,0 +1,32 @@
+      <ion-view view-title="CEP">
+        <ion-header-bar class="bar-light bar-subheader bar-subheader1">
+          <label class="item item-input item-select">
+            <div class="input-label">UF</div>
+            <select ng-model="formData.inputUF" class="form-control">
+                <option ng-repeat="itemUF in UF" value="{{itemUF}}">{{itemUF}}</option>
+            </select>
+          </label>
+          <label class="item item-input">
+            <input ng-model="formData.inputCidade" class="inputCep" type="text" placeholder="Cidade">
+          </label>
+          <div class="item item-input-inset">
+            <input ng-model="formData.inputLogradouro" class="inputCep" type="text" placeholder="Logradouro">
+            <a nav-transition="android" ng-click="ConsultarCEP()">
+              <button id="btnLogradouro" class="button button-icon ion-android-search input-button"></button>
+            </a>
+          </div>
+        </ion-header-bar>
+        <ion-content overflow-scroll="false" class="has-subheader1">
+          <ion-refresher on-refresh="ConsultarCEP()"></ion-refresher>
+          <ion-list>
+            <ion-item ng-repeat="cep in dadosCEP">
+              {{cep.cep}}<br/>
+              {{cep.bairro}}<br/>
+              {{cep.complemento}}<br/>
+              {{cep.localidade}}<br/>
+              {{cep.logradouro}}<br/>
+              {{cep.uf}}
+            </ion-item>
+          </ion-list>
+        </ion-content>
+      </ion-view>
