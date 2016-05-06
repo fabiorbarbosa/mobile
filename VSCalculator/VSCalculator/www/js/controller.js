@@ -7,13 +7,16 @@ app.controller('CalcCtrl', function ($scope) {
     $scope.digito2 = '';
     $scope.operacao = '';
     $scope.mostraVisor = function (valor) {
-        if ($scope.formData.visor == undefined)
-          $scope.formData.visor = '';
+      if ($scope.formData.visor == undefined)
+        $scope.formData.visor = '';
+      if (($scope.formData.visor != '' && isNaN(valor)) || (!isNaN(valor)))
+      {
         if ($scope.operacao != '')
           $scope.addNumero(2, valor);
         else
           $scope.addNumero(1, valor);
         $scope.formData.visor += valor;
+      }
     };
     $scope.limparVar = function() {
       $scope.digito1 = '';
@@ -26,14 +29,14 @@ app.controller('CalcCtrl', function ($scope) {
     };
     $scope.limparDigitoVisor = function(){
       if ($scope.formData.visor.toString().length > 1)
-        $scope.formData.visor = $scope.formData.visor.substring(0, $scope.formData.visor.toString().length-1);
+        $scope.formData.visor = $scope.formData.visor.toString().substring(0, $scope.formData.visor.toString().length-1);
       $scope.delNumero();
     };
     $scope.addNumero = function(d, valor){
       if (d == 1)
-        $scope.digito1 += parseFloat(valor);
+        $scope.digito1 += valor;
       else
-        $scope.digito2 += parseFloat(valor);
+        $scope.digito2 += valor;
     };
     $scope.delNumero = function(){
       if ($scope.operacao == '')
@@ -45,46 +48,72 @@ app.controller('CalcCtrl', function ($scope) {
       $scope.formData.visor += $scope.operacao;
     };
     $scope.somar = function(){
-      $scope.operacao = '+';
-      $scope.addOperacao();
+      if ($scope.formataValor($scope.digito1) > 0)
+      {
+        $scope.operacao = '+';
+        $scope.addOperacao();
+      }
     };
     $scope.subtrair = function(){
-      $scope.operacao = '-';
-      $scope.addOperacao();
+      if ($scope.formataValor($scope.digito1) > 0)
+      {
+        $scope.operacao = '-';
+        $scope.addOperacao();
+      }
     };
     $scope.dividir = function(){
-      $scope.operacao = '/';
-      $scope.addOperacao();
+      if ($scope.formataValor($scope.digito1) > 0)
+      {
+        $scope.operacao = '/';
+        $scope.addOperacao();
+      }
     };
     $scope.multiplicar = function(){
-      $scope.operacao = '*';
-      $scope.addOperacao();
+      if ($scope.formataValor($scope.digito1) > 0)
+      {
+        $scope.operacao = '*';
+        $scope.addOperacao();
+      }
     };
     $scope.percentual = function(){
-      if ($scope.digito2 > 0)
+      if ($scope.formataValor($scope.digito2) > 0)
       {
-        $scope.digito2 = (($scope.digito1 / 100) * $scope.digito2);
+        $scope.digito2 = (($scope.formataValor($scope.digito1) / 100) * $scope.formataValor($scope.digito2));
         $scope.resultado();
+      } else if ($scope.formataValor($scope.digito1) > 0){
+        $scope.operacao = '%';
+        $scope.addOperacao();
       }
     };
+    $scope.formataValor = function(campo){
+      return campo.toString()
+                   .replace('.','')
+                   .replace(',','.');
+    };
     $scope.resultado = function(){
-      switch ($scope.operacao) {
-        case '+':
-          $scope.formData.visor = parseFloat($scope.digito1) + parseFloat($scope.digito2);
-          break;
-        case '-':
-          $scope.formData.visor = parseFloat($scope.digito1) - parseFloat($scope.digito2);
-          break;
-        case '*':
-          $scope.formData.visor = parseFloat($scope.digito1) * parseFloat($scope.digito2);
-          break;
-        case '/':
-          $scope.formData.visor = parseFloat($scope.digito1) / parseFloat($scope.digito2);
-          break;
-        default:
-          $scope.formData.visor = '';
+      if ($scope.formataValor($scope.digito1) > 0 && $scope.formataValor($scope.digito2) > 0)
+      {
+        switch ($scope.operacao) {
+          case '+':
+            $scope.formData.visor = parseFloat($scope.formataValor($scope.digito1)) + parseFloat($scope.formataValor($scope.digito2));
+            break;
+          case '-':
+            $scope.formData.visor = parseFloat($scope.formataValor($scope.digito1)) - parseFloat($scope.formataValor($scope.digito2));
+            break;
+          case '*':
+            $scope.formData.visor = parseFloat($scope.formataValor($scope.digito1)) * parseFloat($scope.formataValor($scope.digito2));
+            break;
+          case '/':
+            $scope.formData.visor = parseFloat($scope.formataValor($scope.digito1)) / parseFloat($scope.formataValor($scope.digito2));
+            break;
+          case '%':
+            $scope.formData.visor = ((parseFloat($scope.formataValor($scope.digito2)) / 100) * parseFloat($scope.formataValor($scope.digito1)));
+            break;
+          default:
+            $scope.formData.visor = '';
+        }
+        $scope.limparVar();
+        $scope.addNumero(1, $scope.formData.visor);
       }
-      $scope.limparVar();
-      $scope.addNumero(1, $scope.formData.visor);
     };
 });
