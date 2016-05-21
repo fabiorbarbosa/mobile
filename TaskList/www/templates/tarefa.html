@@ -1,0 +1,15 @@
+<ion-view title="Tarefas">
+	<ion-header-bar class="bar-assertive">
+    <button class="button icon ion-ios-arrow-back" ng-click="voltar()"></button>
+		<h1 class="title">Tarefas</h1>
+		<button class="button button-balanced ion-plus buttonAdd" ng-click="insereCategoria()"></button>
+	</ion-header-bar>
+	<ion-content overflow-scroll="false">
+    <ion-list>
+      <ion-item ng-repeat="tarefa in tarefas">
+        {{tarefa.nome}}
+        <ion-option-button class="button-assertive icon ion-trash-a" ng-click="excluir(tarefa)"></ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

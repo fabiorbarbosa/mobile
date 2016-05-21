@@ -15,6 +15,9 @@
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
+    <!-- ngCordova/ng-cordova.min js -->
+    <script src="js/ng-cordova.min.js"></script>
+
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
@@ -27,8 +30,15 @@
     <!-- your service's js -->
     <script src="js/service.js"></script>
 
+    <!-- your router's js -->
+    <script src="js/router.js"></script>
+
   </head>
   <body ng-app="appTaskList">
+    <ion-nav-view animation="slide-left-right">
+    </ion-nav-view>
+  </body>
+  <!-- <body ng-app="appTaskList">
     <ion-pane ng-controller="mainCtrl">
       <ion-header-bar class="bar-assertive">
         <h1 class="title">Lista de tarefas</h1>
@@ -53,5 +63,5 @@
         </div>
       </ion-footer-bar>
     </ion-pane>
-  </body>
+  </body> -->
 </html>
